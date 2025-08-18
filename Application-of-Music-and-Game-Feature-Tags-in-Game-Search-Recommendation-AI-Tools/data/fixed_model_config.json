@@ -1,0 +1,28 @@
+{
+  "input_size": 64,
+  "num_classes": 10,
+  "label_encoder": {
+    "electronic": 0,
+    "rock": 1,
+    "classical": 2,
+    "ambient": 3,
+    "pop": 4,
+    "jazz": 5,
+    "hip_hop": 6,
+    "folk": 7,
+    "chinese_traditional": 8,
+    "pixel_game": 9
+  },
+  "style_descriptions": {
+    "electronic": "电子音乐",
+    "rock": "摇滚音乐",
+    "classical": "古典音乐",
+    "ambient": "环境音乐",
+    "pop": "流行音乐",
+    "jazz": "爵士音乐",
+    "hip_hop": "嘻哈音乐",
+    "folk": "民谣音乐",
+    "chinese_traditional": "中国传统音乐",
+    "pixel_game": "像素游戏音乐"
+  }
+}

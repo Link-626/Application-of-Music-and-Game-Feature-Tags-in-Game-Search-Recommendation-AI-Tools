@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">音乐游戏推荐系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-music"></i> <span id="headerTitleText">音乐游戏推荐系统</span></h1>
+            <p class="subtitle" id="subtitle">上传你喜欢的音乐，让AI为你推荐相匹配的游戏</p>
+            <button class="btn-primary" id="langToggle" style="margin-top:10px;">
+                EN
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- 文件上传区域 -->
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">
+                        <h3 id="uploadHintTitle">拖拽文件到这里或点击上传</h3>
+                        <p id="uploadHintFormats">支持 MP4, MP3, WAV, AVI, MOV 格式</p>
+                        <p class="file-size-hint" id="fileSizeHint">文件大小限制: 100MB</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".mp4,.mp3,.wav,.avi,.mov" hidden>
+                    <button class="upload-btn" id="uploadBtn">
+                        <i class="fas fa-plus"></i> <span id="uploadBtnText">选择文件</span>
+                    </button>
+                </div>
+                
+                <!-- 文件信息显示 -->
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <i class="fas fa-file-audio"></i>
+                        <span class="file-name" id="fileName"></span>
+                        <span class="file-size" id="fileSize"></span>
+                    </div>
+                    <button class="remove-file" id="removeFile" title="移除/Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- 分析按钮 -->
+                <button class="analyze-btn" id="analyzeBtn" style="display: none;">
+                    <i class="fas fa-brain"></i> <span id="analyzeBtnText">开始分析</span>
+                </button>
+            </div>
+
+            <!-- 加载动画 -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">
+                    <h3 id="loadingTitle">正在分析您的音乐...</h3>
+                    <p id="loadingStep">提取音频特征中</p>
+                </div>
+            </div>
+
+            <!-- 结果显示区域 -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <!-- 音乐分析结果 -->
+                <div class="music-analysis">
+                    <h2><i class="fas fa-chart-line"></i> <span id="musicAnalysisTitle">音乐分析结果</span></h2>
+                    <div class="style-result">
+                        <div class="style-card">
+                            <div class="style-icon" id="styleIcon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="style-info">
+                                <h3 id="musicStyle">检测到的音乐风格</h3>
+                                <p id="styleDescription">风格描述</p>
+                                <div class="confidence-bar">
+                                    <span id="confidenceLabel">置信度:</span>
+                                    <div class="progress">
+                                        <div class="progress-fill" id="confidenceBar"></div>
+                                    </div>
+                                    <span id="confidenceText">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏推荐结果 -->
+                <div class="recommendations">
+                    <h2><i class="fas fa-gamepad"></i> <span id="recommendationsTitle">为您推荐的游戏</span></h2>
+                    <div class="games-grid" id="gamesGrid">
+                        <!-- 游戏卡片将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 重新分析按钮 -->
+                <div class="action-buttons">
+                    <button class="btn-secondary" id="resetBtn">
+                        <i class="fas fa-redo"></i> <span id="resetBtnText">重新分析</span>
+                    </button>
+                    <button class="btn-primary" id="newFileBtn">
+                        <i class="fas fa-plus"></i> <span id="newFileBtnText">上传新文件</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 错误信息显示 -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3 id="errorTitle">分析失败</h3>
+                    <p id="errorText">发生了未知错误</p>
+                    <button class="btn-primary" id="retryBtn"><span id="retryBtnText">重试</span></button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p id="footerText">&copy; 2025 音乐游戏推荐系统. 基于AI技术驱动</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
